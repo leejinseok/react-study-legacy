@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello World</title>
+  <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+// preventDefault, event
+function ActionLink(){
+  function handleClick(e){
+    e.preventDefault();
+    console.log('The link was clicked');
+  }
+
+  return (
+    <a href="#" onClick={handleClick}>Hi</a>
+  )
+}
+
+// Toggle
+class Toggle extends React.Component{
+  constructor(props){
+    super(props);
+    this.state= {isToggleOn:true}
+    this.handleClick= this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    this.setState(prevState=>({
+      isToggleOn:!prevState.isToggleOn
+    }));
+  }
+
+  render(){
+    return(
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn == true ? "ON" : "OFF"}
+      </button>
+    )
+  }
+}
+
+// property initialize syntax
+class LoggingButton extends React.Component {
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  render() {
+    // This syntax ensures `this` is bound within handleClick
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    );
+  }
+}
+
+ReactDOM.render(
+  <LoggingButton />,
+  document.getElementById('root')
+)
+</script>
+</body>
+</html>
