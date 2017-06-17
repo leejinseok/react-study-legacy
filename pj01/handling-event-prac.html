@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Handling event</title>
+  <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+class Toggle extends React.Component{
+  constructor(props){
+    super(props);
+    this.state= {isToggleOn:true};
+    this.handleClick= this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    this.setState(prevState=>({
+      isToggleOn:!prevState.isToggleOn
+    }));
+  }
+
+  render(){
+    return(
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn == true ? 'On' : 'Off'}
+      </button>
+    )
+  }
+}
+
+ReactDOM.render(
+  <Toggle />,
+  document.getElementById('root')
+)
+</script>
+</body>
+</html>
