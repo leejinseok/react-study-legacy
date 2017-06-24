@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Controlled components</title>
+  <title>Controlled components practice</title>
   <script src="https://unpkg.com/react@latest/dist/react.js"></script>
   <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -15,7 +15,7 @@ class NameForm extends React.Component{
     super(props);
     this.handleChange= this.handleChange.bind(this);
     this.handleSubmit= this.handleSubmit.bind(this);
-    this.state={value:''};
+    this.state= {value:''}
   }
 
   handleChange(event){
@@ -23,18 +23,15 @@ class NameForm extends React.Component{
   }
 
   handleSubmit(event){
-    alert('A name was submitted : '+this.state.value);
-    event.preventDefault();n
+    alert(this.state.value);
+    event.preventDefault();
   }
 
   render(){
     return(
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Name :
-          <input type='text' value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <button type='submit'>전송</button>
+        <input type="text" value={this.state.value} onChange={this.handleChange} />
+        <button type='submit'>submit</button>
       </form>
     )
   }
