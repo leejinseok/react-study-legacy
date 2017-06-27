@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Select tag</title>
+    <title>Select tag practice</title>
     <script src="https://unpkg.com/react@latest/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -13,27 +13,29 @@
     class FlavorForm extends React.Component{
         constructor(props){
             super(props);
-            this.state={value:'coconut'}
             this.handleChange= this.handleChange.bind(this);
             this.handleSubmit= this.handleSubmit.bind(this);
+            this.state={value:'grape'};
         }
+
         handleChange(event){
             this.setState({value:event.target.value});
         }
+
         handleSubmit(event){
             alert(this.state.value);
             event.preventDefault();
         }
+
         render(){
             return(
                 <form onSubmit={this.handleSubmit}>
-                <select value={this.state.value} onChange={this.handleChange}>
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option value="coconut">Coconut</option>
-                <option value="mango">Mango</option>
-                </select>
-                <button type='submit'>submit</button>
+                    <select value={this.state.value} onChange={this.handleChange}>
+                        <option value="orange">orange</option>
+                        <option value="banana">banana</option>
+                        <option value="grape">grapes</option>
+                    </select>
+                    <button type='submit'>전송</button>
                 </form>
             )
         }
