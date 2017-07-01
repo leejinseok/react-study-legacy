@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Thinking in react practice</title>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+
+
+class GuyRow extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    render(){
+        return(
+            <tr>
+                <td>{this.props.guy.name}</td>
+                <td>{this.props.guy.marriage? '결혼' : '미혼'}</td>
+            </tr>
+        )
+    }
+}
+
+class GuyTable extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        var rows= [];
+        this.props.guys.forEach(function(guy){
+            rows.push(<GuyRow guy={guy} />);
+        });
+        return(
+            <table>
+                <thead>
+                    <tr>
+                        <td>이름</td>
+                        <td>결혼</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows}
+                </tbody>
+            </table>
+        )
+    }
+}
+
+class SearchBar extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    render(){
+        return (
+            <form>
+                <input type="text" placeholder="search..."/>
+                <p>
+                    <input type="checkbox"/>
+                    {' '}
+                    Only show in marriage
+                </p>
+            </form>
+        )
+    }
+}
+
+class FilterableGuyTable extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    render(){
+        return(
+            <div>
+                <SearchBar />
+                <GuyTable guys={this.props.guys} />
+            </div>
+        )
+    }
+}
+
+var GUYS= [
+    {name:"Jin-Seok Lee", age: 29, marriage: false},
+    {name:"Gwan-Seok Lee", age: 29, marriage: false},
+    {name:"Kyeong-Dong Jang", age: 61, marriage: true}
+];
+
+ReactDOM.render(
+    <FilterableGuyTable guys={GUYS} />,
+    document.getElementById('container')
+)
+
+</script>
+</body>
+</html>
