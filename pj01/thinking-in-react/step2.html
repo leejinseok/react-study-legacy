@@ -9,7 +9,6 @@
 <body>
     <div id="container"></div>
     <script type="text/babel">
-        
         class ProductCategoryRow extends React.Component{
             constructor(props){
                 super(props);
@@ -23,14 +22,13 @@
                 )
             }
         }
-
         class ProductRow extends React.Component{
             constructor(props){
                 super(props);
             }
 
             render(){
-                var name= this.props.product.stocked ? 
+                var name= this.props.product.stocked ?
                     this.props.product.name :
                     <span style={{color:'red'}}> {this.props.product.name} </span>;
                 return(
@@ -41,7 +39,7 @@
                 )
             }
         }
-        
+
         class ProductTable extends React.Component{
             constructor(props){
                 super(props);
@@ -51,13 +49,10 @@
                 var rows= [];
                 var lastCategory= null;
                 this.props.products.forEach(function(product){
-                    
+
                     rows.push(<ProductRow product={product} key={product.name} />);
                     lastCategory= product.category;
                 });
-
-             
-
                 return(
                     <table>
                         <thead>
